@@ -135,7 +135,6 @@ function Keyware:CreateWindow(config)
         UserId = LocalPlayer and LocalPlayer.UserId or 1
     }
 
-    -- Cleanup existing
     pcall(function()
         local parent = getSafeGuiParent()
         if parent then
@@ -493,7 +492,6 @@ function Keyware:CreateWindow(config)
         HudTagsLabel.TextXAlignment = Enum.TextXAlignment.Left
         HudTagsLabel.Parent = LeftStatusHUD
 
-        -- HUD Dragging
         local hudDragging, hudDragInput, hudDragStart, hudStartPos
         HudTopBar.InputBegan:Connect(function(input)
             if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
@@ -547,7 +545,6 @@ function Keyware:CreateWindow(config)
     MainStroke.Thickness = 1
     MainStroke.Parent = MainFrame
 
-    -- Sidebar
     local Sidebar = Instance.new("Frame")
     Sidebar.Name = "Sidebar"
     Sidebar.Size = UDim2.new(0, 165, 1, 0)
@@ -649,7 +646,6 @@ function Keyware:CreateWindow(config)
     uSub.TextXAlignment = Enum.TextXAlignment.Left
     uSub.Parent = UserProfile
 
-    -- TopBar
     local TopBar = Instance.new("Frame")
     TopBar.Name = "TopBar"
     TopBar.Size = UDim2.new(1, -165, 0, 42)
@@ -871,7 +867,6 @@ function Keyware:CreateWindow(config)
     Window.DropdownOverlay = DropdownOverlay
     Window.OverlayBackdrop = OverlayBackdrop
 
-    -- Minimize & Visibility Logic
     local NormalMenuSize = UDim2.new(0, 700, 0, 470)
     local MinimizedMenuSize = UDim2.new(0, 270, 0, 42)
     local NormalMenuPos = UDim2.new(0.5, -350, 0.5, -235)
@@ -961,7 +956,6 @@ function Keyware:CreateWindow(config)
     end
     MinimizeBtn.MouseButton1Click:Connect(handleMinimizeClick)
 
-    -- Window Dragging
     local isDragging, dragInput, dragStart, startPos
     TopBar.InputBegan:Connect(function(input)
         if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then

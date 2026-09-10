@@ -97,7 +97,6 @@ local Services = {
 
 local LocalPlayer = Services.Players.LocalPlayer
 
--- [SAFE GUI PARENT FINDER]
 local function getSafeGuiParent()
     if typeof(gethui) == "function" then
         local s, h = pcall(gethui)
@@ -124,7 +123,6 @@ local function getSafeGuiParent()
     return LocalPlayer and LocalPlayer:WaitForChild("PlayerGui", 5) or Services.CoreGui
 end
 
--- [CREATE WINDOW METHOD]
 function Keyware:CreateWindow(config)
     config = config or {}
     local Title = config.Title or "KEYWARE"
@@ -179,7 +177,6 @@ function Keyware:CreateWindow(config)
         HUD = nil
     }
 
-    -- [NOTIFICATIONS SYSTEM]
     local NotificationContainer = Instance.new("Frame")
     NotificationContainer.Name = "NotificationContainer"
     NotificationContainer.Size = UDim2.new(0, 270, 1, -50)
@@ -339,7 +336,6 @@ function Keyware:CreateWindow(config)
 
     Keyware.Notify = function(_, d) Window:Notify(d) end
 
-    -- [STATUS HUD]
     if HasStatusHUD then
         local LeftStatusHUD = Instance.new("Frame")
         LeftStatusHUD.Name = "LeftStatusHUD"
@@ -533,7 +529,6 @@ function Keyware:CreateWindow(config)
         }
     end
 
-    -- [MAIN WINDOW FRAME]
     local MainFrame = Instance.new("Frame")
     MainFrame.Name = "MainFrame"
     MainFrame.Size = UDim2.new(0, 700, 0, 470)
@@ -1014,7 +1009,6 @@ function Keyware:CreateWindow(config)
 
     local categoryOrder = 0
 
-    -- [CREATE CATEGORY]
     function Window:CreateCategory(catTitle)
         categoryOrder = categoryOrder + 1
         local lbl = Instance.new("TextLabel")
@@ -1030,7 +1024,6 @@ function Keyware:CreateWindow(config)
         return lbl
     end
 
-    -- [CREATE TAB]
     function Window:CreateTab(tabTitle)
         categoryOrder = categoryOrder + 1
 
@@ -1139,7 +1132,6 @@ function Keyware:CreateWindow(config)
             selectTab()
         end
 
-        -- [CREATE CARD IN TAB]
         function Tab:CreateCard(cardTitle, colIndex)
             local targetCol = (colIndex == 2 and col2) or col1
 
@@ -1190,7 +1182,6 @@ function Keyware:CreateWindow(config)
 
             local CardObj = { Card = card }
 
-            -- [ADD TOGGLE]
             function CardObj:AddToggle(toggleTitle, defaultValue, callback)
                 defaultValue = defaultValue or false
                 callback = callback or function() end
@@ -1255,7 +1246,6 @@ function Keyware:CreateWindow(config)
                 }
             end
 
-            -- [ADD SLIDER]
             function CardObj:AddSlider(sliderTitle, minVal, maxVal, defaultVal, stepVal, suffix, callback)
                 minVal = minVal or 0
                 maxVal = maxVal or 100
@@ -1359,7 +1349,6 @@ function Keyware:CreateWindow(config)
                 }
             end
 
-            -- [ADD BUTTON]
             function CardObj:AddButton(btnTitle, btnText, callback)
                 callback = callback or function() end
 
@@ -1400,7 +1389,7 @@ function Keyware:CreateWindow(config)
                 end)
 
                 return btn
-            end            -- [ADD DROPDOWN] (Floating Overlay)
+            end
             function CardObj:AddDropdown(ddTitle, options, defaultOpt, callback)
                 options = options or {}
                 defaultOpt = defaultOpt or options[1] or ""
@@ -1717,7 +1706,6 @@ function Keyware:CreateWindow(config)
                 return DropdownInstance
             end
 
-            -- [ADD KEYBIND]
             function CardObj:AddKeybind(kbTitle, defaultKey, callback)
                 defaultKey = defaultKey or Enum.KeyCode.RightControl
                 callback = callback or function() end
@@ -1792,7 +1780,6 @@ function Keyware:CreateWindow(config)
                 }
             end
 
-            -- [ADD TEXTBOX]
             function CardObj:AddTextbox(tbTitle, placeholder, defaultText, callback)
                 placeholder = placeholder or "Enter text..."
                 defaultText = defaultText or ""
@@ -1864,7 +1851,6 @@ function Keyware:CreateWindow(config)
                 }
             end
 
-            -- [ADD COLORPICKER]
             function CardObj:AddColorPicker(cpTitle, defaultColor, callback)
                 defaultColor = defaultColor or Color3.fromRGB(255, 50, 50)
                 callback = callback or function() end
@@ -2034,7 +2020,6 @@ function Keyware:CreateWindow(config)
                 return PickerInstance
             end
 
-            -- [ADD LABEL]
             function CardObj:AddLabel(labelText)
                 local row = Instance.new("Frame")
                 row.Size = UDim2.new(1, 0, 0, 0)
@@ -2062,7 +2047,6 @@ function Keyware:CreateWindow(config)
                 }
             end
 
-            -- [ADD PARAGRAPH]
             function CardObj:AddParagraph(pTitle, pDesc)
                 local row = Instance.new("Frame")
                 row.Size = UDim2.new(1, 0, 0, 0)
@@ -2103,7 +2087,6 @@ function Keyware:CreateWindow(config)
                 }
             end
 
-            -- [ADD DIVIDER]
             function CardObj:AddDivider()
                 local div = Instance.new("Frame")
                 div.Size = UDim2.new(1, 0, 0, 1)
@@ -2121,7 +2104,6 @@ function Keyware:CreateWindow(config)
         return Tab
     end
 
-    -- [WINDOW HELPER METHODS]
     function Window:Toggle(targetState)
         toggleMenuVisibility(targetState)
     end
@@ -2140,7 +2122,6 @@ function Keyware:CreateWindow(config)
         Window:Unload()
     end
 
-    -- [UNLOAD METHOD]
     function Window:Unload()
         for _, conn in ipairs(Window.Connections) do
             if typeof(conn) == "RBXScriptConnection" and conn.Connected then
